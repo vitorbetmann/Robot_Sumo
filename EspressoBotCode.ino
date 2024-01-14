@@ -18,7 +18,7 @@
 #define IN3 9  //RIGHT SIDE
 #define IN4 8
 //other constants
-#define soundSpeed 0.034  //cm per seconds
+#define soundSpeed 0.034  //10 ^ 6 cm per seconds
 
 QTRSensors qtr;
 const byte SensorCount = 2;
@@ -132,7 +132,6 @@ void getSet(byte sensorSide) {
     analogWrite(ENALeft, 255); //-------------------------------------------------------------make both 255?
     delay(400); //-------------------------------------------------------------------------------400 or 100?
   }
-
   //Full stop
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, LOW);
@@ -192,14 +191,15 @@ bool IRSensorOnEdge(byte sensorSide) {
     averageRight -= arrayRight[i] * 0.5;  //multiply instead
     arrayRight[i] = sensorValues[sensorSide];
     averageRight += arrayRight[i] * 0.5;  //multiply instead
-    return averageRight < 400;
+    return averageRight < 350; // during testing, black was around 600 and white around 50, so any average below 350 is a sign of an edge
   } else {
     averageLeft -= arrayLeft[i] * 0.5;  //multiply instead
     arrayLeft[i] = sensorValues[sensorSide];
     averageLeft += arrayLeft[i] * 0.5;  //multiply instead
-    return averageLeft < 400;
+    return averageLeft < 350; // during testing, black was around 600 and white around 50, so any average below 350 is a sign of an edge
   }
 }
+
 float oppDistance() {
   long duration;
   float distance;
@@ -208,7 +208,7 @@ float oppDistance() {
   digitalWrite(triggerPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(triggerPin, LOW);
-  duration = pulseIn(echoPin, HIGH);
-  distance = duration * 0.5 * soundSpeed;
+  duration = pulseIn(echoPin, HIGH); //returns a value in 10 ^ -6 seconds
+  distance = duration * 0.5 * soundSpeed; //distance in cm
   return distance;
 }
