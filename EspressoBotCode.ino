@@ -34,7 +34,7 @@ byte i = 0;
 byte count = 0;
 
 void setup() {
-  //Serial.begin(9600);  //comment out
+  Serial.begin(9600);  //comment out
 
   // configure the sensors
   qtr.setTypeAnalog();
@@ -63,17 +63,18 @@ void setup() {
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
   pinMode(ENBRight, OUTPUT);
+  
 
   delay(5000);
 
   //first move here
-  firstMove();
+  //firstMove();
+  //while(true){}
 }
 
 void loop() {
   bool oppFound;
 
-  if (oppDistance > 20) {
     qtr.read(sensorValues);  // read raw sensor values
     rightOnEdge = IRSensorOnEdge(rightIRSensor);
     leftOnEdge = IRSensorOnEdge(leftIRSensor);
@@ -88,7 +89,7 @@ void loop() {
     if (oppFound) {
       attack();
     }
-  }
+  
 
   i++;
 }
@@ -116,7 +117,7 @@ void getSet(byte sensorSide) {
     //Reverse
     digitalWrite(IN3, LOW);
     digitalWrite(IN4, HIGH);
-    analogWrite(ENBRight, 200); //--------------------------------------------------------------make both 255?
+    analogWrite(ENBRight, 255); //--------------------------------------------------------------make both 255?
     digitalWrite(IN1, LOW);
     digitalWrite(IN2, HIGH);
     analogWrite(ENALeft, 255); //-------------------------------------------------------------make both 255?
@@ -128,8 +129,8 @@ void getSet(byte sensorSide) {
     analogWrite(ENBRight, 255); //------------------------------------------------------------make both 255?
     digitalWrite(IN1, LOW);
     digitalWrite(IN2, HIGH);
-    analogWrite(ENALeft, 200); //-------------------------------------------------------------make both 255?
-    delay(100); //-------------------------------------------------------------------------------400 or 100?
+    analogWrite(ENALeft, 255); //-------------------------------------------------------------make both 255?
+    delay(400); //-------------------------------------------------------------------------------400 or 100?
   }
 
   //Full stop
@@ -159,11 +160,19 @@ bool search() { //-----------------------------------------------------give sear
     //if opp not found yet, keep looking
     digitalWrite(IN1, HIGH);
     digitalWrite(IN2, LOW);
-    analogWrite(ENALeft, 150); //--------------------------------------------------------------------------------change speeds?
-    digitalWrite(IN3, HIGH);
-    digitalWrite(IN4, LOW);
-    analogWrite(ENBRight, 50); //--------------------------------------maybe the speed is good, maybe it covers too large a ring
+    analogWrite(ENALeft, 100); //--------------------------------------------------------------------------------change speeds?
+    digitalWrite(IN3, LOW);
+    digitalWrite(IN4, HIGH);
+    analogWrite(ENBRight, 120); //--------------------------------------maybe the speed is good, maybe it covers too large a ring
     delay(50);
+    count++;
+
+    if (count == 90){
+      count = 0;
+      firstMove();
+      delay(50);
+    }
+
   }
 }
 
