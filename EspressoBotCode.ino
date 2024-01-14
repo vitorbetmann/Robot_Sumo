@@ -69,7 +69,6 @@ void setup() {
 
   //first move here
   //firstMove();
-  //while(true){}
 }
 
 void loop() {
@@ -94,7 +93,7 @@ void loop() {
   i++;
 }
 
-void firstMove() {
+void firstMove() { // was supposed to be done during setup, but gave up on that after testing
   digitalWrite(IN3, HIGH);
   digitalWrite(IN4, LOW);
   analogWrite(ENBRight, 150);
@@ -166,10 +165,11 @@ bool search() { //-----------------------------------------------------give sear
     delay(50);
     count++;
 
-    if (count == 90){
+    //if opp still not found, move a bit forward
+    if (count == 90){ // arbitrary, needs more testing
       count = 0;
       firstMove();
-      delay(50);
+      delay(50); // arbitrary, needs more testing
     }
 
   }
