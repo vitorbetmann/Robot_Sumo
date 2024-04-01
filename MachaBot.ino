@@ -16,10 +16,10 @@
 #define IN4 10  //
 #define ENB 11  //
 //Other constants
-#define INITIAL_DELAY 3500       //Milliseconds *Standard delay for Mini Sumobot matches is 5000 ms, but our Arduino board took around 1.5 seconds to power on.
+#define INITIAL_DELAY 5000       //Milliseconds. *Standard delay for Mini Sumobot matches is 5000 ms.
 #define MAX_PULSE_DURATION 5600  //Microseconds.
 #define SOUND_SPEED 0.0343       //Cm per microsecond.
-#define COLOUR_THRESHOLD 400     //Value that represent the threshold between what's considered white and black.
+#define COLOUR_THRESHOLD 400     //Value that represents the threshold between what's considered white and black.
 
 #define FORWARD 1                  //Directions values are arbitrary, but add to/represent HIGH/true (1), or LOW/false (0).
 #define BACKWARDS 0                //More on that on the setMotors() and setMotorsSpin() methods.
@@ -29,13 +29,13 @@ int standardRotation = CLOCKWISE;  //Set this direction based on the opponent. I
 
 //Variables
 //*Explanation for the use of arrays in the updateUSValues() and updateIRValues() methods
-const byte IRArraySize = 2;     //Amount of values needed to get an average.
+const byte IRArraySize = 2;     //Amount of values desired to get an average.
 int leftIRArray[IRArraySize];   //Stores values read by the left IR Sensor.
 int rightIRArray[IRArraySize];  //Stores values read by the right IR Sensor.
 float leftIRAverage = 0;        //Stores an average of the values in the left IR array.
 float rightIRAverage = 0;       //Stores an average of the values in the right IR array.
 
-const byte USArraySize = 2;  //Amount of values needed to perform the sum.
+const byte USArraySize = 2;  //Amount of values desired to perform the sum.
 float USArray[USArraySize];  //Stores values read by the US Sensor.
 float USValuesSum = 0;       //Stores the sum of all values in the US array.
 
