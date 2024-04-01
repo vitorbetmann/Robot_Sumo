@@ -1,5 +1,3 @@
-
-
 //Edge Sensors
 #define leftIRPin A0   //They use analog pins.
 #define rightIRPin A1  //
