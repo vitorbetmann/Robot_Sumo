@@ -16,7 +16,7 @@
 #define IN4 10  //
 #define ENB 11  //
 //Other constants
-#define INITIAL_DELAY 3500       //Milliseconds *Standard delay for Mini Sumobot matches is 5000 ms, but our Arduino board took around 1.5 seconds to power on.
+#define INITIAL_DELAY 5000       //Milliseconds *Standard delay for Mini Sumobot matches is 5000 ms.
 #define MAX_PULSE_DURATION 5600  //Microseconds.
 #define SOUND_SPEED 0.0343       //Cm per microsecond.
 #define COLOUR_THRESHOLD 400     //Value that represent the threshold between what's considered white and black.
