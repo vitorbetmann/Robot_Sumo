@@ -16,7 +16,7 @@
 #define IN4 10  //
 #define ENB 11  //
 //Other constants
-#define INITIAL_DELAY 5000       //Milliseconds *Standard delay for Mini Sumobot matches is 5000 ms.
+#define INITIAL_DELAY 3500       //Milliseconds *Standard delay for Mini Sumobot matches is 5000 ms, but our Arduino board took around 1.5 seconds to power on.
 #define MAX_PULSE_DURATION 5600  //Microseconds.
 #define SOUND_SPEED 0.0343       //Cm per microsecond.
 #define COLOUR_THRESHOLD 400     //Value that represent the threshold between what's considered white and black.
@@ -45,7 +45,7 @@ byte j = 0;  //Iterates over the elements of the US array.
 //SETUP & LOOP BELOW
 //////////////////////////////////////////////////////////////////////////////
 void setup() {
-  //Start countdown for initial delay.
+  //Start countdown for initial delay
   long matchStart = millis();
 
   //Enable Edge Sensors && Populate IR arrays and get averages
@@ -115,7 +115,7 @@ void attackFromSide() {
   }
   standardRotation = !standardRotation;
   move(FORWARD, 255, 255);
-  long timer = millis();  //Start of a timer.
+  long timer = millis();                             //Start of a timer.
   while (!oppFound() && (millis() - timer < 300)) {  // 300 is arbitrary, needs more testing
     //Do nothing
   }
@@ -292,8 +292,8 @@ void updateIRValues() {
 //Returns the distance, in cm, of an object to the Ultrasonic sensor.
 //Returns 0 if nothing in sensor range before MAX_PULSE_DURATION microseconds go by.
 float getOppDistance() {
-  unsigned long pulseDuration; //Time it takes to emmit a pulse and receive it back in microsseconds.
-  float distance; //Distance, in cm, to an object.
+  unsigned long pulseDuration;  //Time it takes to emmit a pulse and receive it back in microsseconds.
+  float distance;               //Distance, in cm, from the Ultrasonic sensor to an object.
   digitalWrite(triggerPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(triggerPin, LOW);
