@@ -115,6 +115,7 @@ void attackFromSide() {
   }
   standardRotation = !standardRotation;
   move(FORWARD, 255, 255);
+  //Start of a timer;
   long timer = millis();
   while (!oppFound() && (millis() - timer < 300)) {  // 300 is arbitrary, needs more testing
     //Do nothing
