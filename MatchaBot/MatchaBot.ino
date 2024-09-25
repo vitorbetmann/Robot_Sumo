@@ -1,8 +1,6 @@
 //Edge Sensors
 #define leftIRPin A0   //They use analog pins.
 #define rightIRPin A1  //
-#define leftIR 0       //Side values are arbitrary.
-#define rightIR 1      //
 //Ultrasonic Sensors
 #define triggerPin 4  //Trigger uses digital pin.
 #define echoPin 5     //Echo uses digital pin.
@@ -48,8 +46,8 @@ void setup() {
 
   //Enable Edge Sensors && Populate IR arrays and get averages
   for (byte k = 0; k < IRArraySize; k++) {
-    leftIRArray[k] = analogRead(leftIR);
-    rightIRArray[k] = analogRead(rightIR);
+    leftIRArray[k] = analogRead(leftIRPin);
+    rightIRArray[k] = analogRead(rightIRPin);
 
     leftIRAverage += leftIRArray[k];
     rightIRAverage += rightIRArray[k];
@@ -277,11 +275,11 @@ void updateIRValues() {
   i = i % (IRArraySize);
 
   leftIRAverage -= leftIRArray[i] / IRArraySize;
-  leftIRArray[i] = analogRead(leftIR);
+  leftIRArray[i] = analogRead(leftIRPin);
   leftIRAverage += leftIRArray[i] / IRArraySize;
 
   rightIRAverage -= rightIRArray[i] / IRArraySize;
-  rightIRArray[i] = analogRead(rightIR);
+  rightIRArray[i] = analogRead(rightIRPin);
   rightIRAverage += rightIRArray[i] / IRArraySize;
 
   i++;
